@@ -1,0 +1,185 @@
+@import "src/styles/vars.scss";
+$breakpoint-extra-small: 400px;
+
+.component-container {
+  background-color: #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 4px 0px;
+  overflow: hidden;
+
+  h4 {
+    color: #706d6b;
+
+    @media (max-width: $breakpoint-extra-small) {
+      font-size: 20px;
+    }
+  }
+
+  .caption {
+    background-color: rgb(214, 209, 209);
+    border: 1px solid #706d6b;
+    width: 96%;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #706d6b;
+  }
+
+  form {
+    .form-group {
+      .form-check {
+        .form-check-label {
+          font-weight: 500;
+          color: #2b2a29;
+        }
+      }
+
+      label {
+        font-weight: 700;
+        color: #2b2a29;
+      }
+
+      // input.ng-touched.ng-invalid {
+      //   border: solid red 1px;
+      // }
+
+      // input.ng-touched.ng-valid {
+      //   border: solid green 1px;
+      // }
+
+      input:not([readonly]).ng-touched.ng-invalid {
+        border: solid red 1px;
+      }
+
+      input:not([readonly]).ng-touched.ng-valid {
+        border: solid green 1px;
+      }
+
+      // input[readonly].ng-touched.ng-invalid {
+      // }
+
+      // input[readonly].ng-touched.ng-valid {
+      // }
+
+      textarea:not([readonly]).ng-touched.ng-invalid {
+        border: solid red 1px;
+      }
+
+      textarea:not([readonly]).ng-touched.ng-valid {
+        border: solid green 1px;
+      }
+
+      // textarea[readonly].ng-touched.ng-invalid {
+      // }
+
+      // textarea[readonly].ng-touched.ng-valid {
+      // }
+
+      // input:disabled {
+      //   background-color: rgb(247, 249, 252) !important;
+      //   color:  rgb(34, 43, 69) !important;
+      // }
+
+      input[readonly] {
+        pointer-events: none;
+      }
+
+      // input[type=checkbox][readonly] {
+      //   pointer-events: none;
+      // }
+    }
+
+    .send-button {
+      width: 220px;
+      height: 40px;
+      background-image: linear-gradient(to right, #fd373dd1, #e31e24);
+      color: white;
+      font-weight: 700;
+    }
+  }
+}
+
+.red-button {
+  width: 100px;
+  height: 40px;
+  background-image: linear-gradient(to right, #fd373dd1, #e31e24);
+  color: white;
+  font-weight: 700;
+}
+
+.dynamic-form {
+  label {
+    font-weight: 700;
+    color: #2b2a29;
+  }
+}
+
+// .createdAd-col {
+//   width: 150px;
+//   min-width: 150px;
+//   text-overflow: ellipsis;
+//   // @media (max-width: $breakpoint-id-col) {
+//   //   display: none;
+//   // }
+// }
+
+// .type-col {
+//   width: 100px;
+//   min-width: 100px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-type-col) {
+//     display: none;
+//   }
+// }
+
+// .id-col {
+//   width: 100px;
+//   min-width: 100px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-id-col) {
+//     display: none;
+//   }
+// }
+
+// .contractor-col {
+//   width: 150px;
+//   min-width: 150px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-contractor-col) {
+//     display: none;
+//   }
+// }
+
+// .vehicle-col {
+//   width: 130px;
+//   min-width: 130px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-vehicle-col) {
+//     display: none;
+//   }
+// }
+
+// .worker-col {
+//   width: 100px;
+//   min-width: 100px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-worker-col) {
+//     display: none;
+//   }
+// }
+
+// .description-col {
+//   width: 130px;
+//   min-width: 130px;
+//   text-overflow: ellipsis;
+//   @media (max-width: $breakpoint-description-col) {
+//     display: none;
+//   }
+// }
+
+.btn {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    box-shadow: none;
+  }
+}

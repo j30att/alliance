@@ -1,0 +1,58 @@
+$breakpoint-extra-small: 400px;
+
+.profile-container {
+  background-color: #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 4px 0px;
+
+  h4 {
+    color: #706D6B;
+  }
+
+  .title {
+    @media (max-width: $breakpoint-extra-small) {
+      font-size: 20px;;
+    }
+  }
+
+  .profile_items_container {
+    width: 300px;
+
+    .profile_item {
+      width: 95%;
+
+      label {
+        font-weight: 700;
+        color: #2B2A29;
+      }
+    }
+  }
+
+  .profile_avatar_container {
+    width: 300px;
+
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+    .load_image_button {
+      background-image: linear-gradient(to right, #fd373dd1, #E31E24);
+      color: white;
+      font-weight: 700;
+    }
+
+    .remove_image_button {
+      background-image: linear-gradient(to right, #413131d1, #1d1919d1);
+      color: white;
+      font-weight: 700;
+    }
+  }
+
+  .save_button {
+    width: 220px;
+    height: 40px;
+    background-image: linear-gradient(to right, #fd373dd1, #E31E24);
+  }
+
+}

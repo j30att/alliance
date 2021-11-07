@@ -1,0 +1,253 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Монтаж </h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Персональные данные
+  </div>
+
+  <form #personalDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Гражданство: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Гражданство" name="nationality"
+        [ngModel]="personalData.nationality" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Фамилия: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Фамилия" name="lastName"
+        [ngModel]="personalData.lastName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Имя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Имя" name="firstName"
+        [ngModel]="personalData.firstName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Отчество: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Отчество:" name="patronymic"
+        [ngModel]="personalData.patronymic" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата рождения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="dateOfBirthPicker"
+        placeholder="Дата рождения" name="dateOfBirth" [ngModel]="personalData.dateOfBirth" required />
+      <nb-datepicker #dateOfBirthPicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Контактный номер телефона: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Контактный номер телефона" name="phone"
+        [ngModel]="personalData.phone" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Данные паспорта
+  </div>
+
+  <form #passportForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="d-flex align-items-start justify-content-center">
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Серия: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Серия" name="series"
+          [ngModel]="passport.series" required />
+      </div>
+
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Номер: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+          [ngModel]="passport.number" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="passportDateOfIssuePicker"
+        placeholder="Дата выдачи" name="dateOfIssue" [ngModel]="passport.dateOfIssue" required />
+      <nb-datepicker #passportDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Кем выдан: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Кем выдан" name="issuer"
+        [ngModel]="passport.issuer" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Код подразделения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Код подразделения" name="departmentCode"
+        [ngModel]="passport.departmentCode" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Регистрационные данные, СНИЛС, ИНН
+  </div>
+
+  <form #registrationDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> ИНН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ИНН" name="inn"
+        [ngModel]="registrationData.inn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> СНИЛС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="СНИЛС" name="snils"
+        [ngModel]="registrationData.snils" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Код региона по классификатору: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Код региона по классификатору"
+        name="regionCode" [ngModel]="registrationData.regionCode" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Населённый пункт: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Населённый пункт" name="locality"
+        [ngModel]="registrationData.locality" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес регистрации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Адрес регистрации"
+        name="registrationAddress" [ngModel]="registrationData.registrationAddress" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Транспортное средство
+  </div>
+
+  <form #vehicleForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Страна регистрации ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Страна регистрации ТС"
+        name="countryOfRegistration" [ngModel]="vehicle.countryOfRegistration" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Категория ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Категория ТС" name="category"
+        [ngModel]="vehicle.category" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Марка ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Марка ТС" name="brand"
+        [ngModel]="vehicle.brand" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Модель ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Модель ТС" name="model"
+        [ngModel]="vehicle.model" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Год выпуска: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Год выпуска" name="yearOfIssue"
+        [ngModel]="vehicle.yearOfIssue" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Цвет: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Цвет" name="color"
+        [ngModel]="vehicle.color" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Регистрационный номер: </label>
+      <input [readonly]="request" [disabled]="vehicle.noRegistrationNumber" type="text" nbInput fullWidth
+        placeholder="Регистрационный номер" name="registrationNumber" [ngModel]="vehicle.registrationNumber" required />
+      <div class="form-check mt-1">
+        <input [readonly]="request" class="form-check-input" type="checkbox" name="noRegistrationNumber"
+          [(ngModel)]="vehicle.noRegistrationNumber">
+        <label class="form-check-label">
+          Нет номера
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> VIN: </label>
+      <input [readonly]="request" [disabled]="vehicle.noVIN" type="text" nbInput fullWidth placeholder="VIN" name="vin"
+        [ngModel]="vehicle.VIN" required />
+      <div class="form-check mt-1">
+        <input [readonly]="request" class="form-check-input" type="checkbox" name="noVIN" [(ngModel)]="vehicle.noVIN">
+        <label class="form-check-label">
+          Нет номера
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ПТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ПТС" name="PTS" [ngModel]="vehicle.PTS"
+        required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ТП: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ТП" name="TP" [ngModel]="vehicle.TP"
+        required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> СТС: </label>
+
+      <div class="form-check my-1">
+        <input [readonly]="request" class="form-check-input" type="checkbox" name="STSMark" [ngModel]="vehicle.STSMark">
+        <label class="form-check-label">
+          СТС имеет отметку о регистрации в соответствии с 399 ПП (КФО и Севастополь)
+        </label>
+      </div>
+
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="СТС" name="STS" [ngModel]="vehicle.STS"
+        required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата регистрации СТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="STSRegistrationDate"
+        placeholder="Дата регистрации СТС" name="STSRegistrationDate" [ngModel]="vehicle.STSRegistrationDate"
+        required />
+      <nb-datepicker #STSRegistrationDate format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+  </form>
+
+  <form #submitForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Согласие: </label>
+      <div class="form-check ms-3">
+        <input [readonly]="request" class="form-check-input" type="checkbox" name="agreement"
+          [ngModel]="submit.agreement" required>
+        <label class="form-check-label">
+          Согласие на обработку персональных данных
+        </label>
+      </div>
+    </div>
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading"
+      [sendButtonDisabled]="personalDataForm.invalid || passportForm.invalid || registrationDataForm.invalid || vehicleForm.invalid || submitForm.invalid"
+      (onSendButtonClick)="onCreateButton(personalDataForm, passportForm, registrationDataForm, vehicleForm, submitForm)"
+      (onBackButtonClick)="onBackButton()" (onConfirmButtonClick)="onConfirmButton()"
+      (onRejectButtonClick)="onRejectButton()" (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

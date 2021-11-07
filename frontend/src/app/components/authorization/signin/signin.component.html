@@ -1,0 +1,76 @@
+<nb-layout>
+  <nb-layout-column style="padding: 0;">
+    <div class="container-fluid d-flex flex-column align-items-center justify-content-start h-100 main_container">
+
+      <div class="logo_container">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+          <img src="assets/img/index_logo.png" alt="Профиль">
+          <span class="my-3"> Мониторинговая компания !</span>
+        </div>
+      </div>
+
+      <div class="login_form_container">
+        <div class="d-flex align-items-center justify-content-center login_form_title"> Вход в личный кабинет </div>
+
+        <div class="m-3">
+          <label for="login_input" class="form-label"> Логин: </label>
+          <input type="text" nbInput fullWidth placeholder="Full width" [(ngModel)]="login" id="login_input" />
+        </div>
+
+        <div class="m-3">
+          <label for="password_input" class="form-label"> Пароль: </label>
+          <input type="password" nbInput fullWidth placeholder="Full width" [(ngModel)]="password"
+            id="password_input" />
+        </div>
+
+        <div class="m-3">
+          <button class="login_button btn" style="color: white; font-weight: 700;" (click)="onLoginClick()">
+            <div *ngIf="loading">
+              <div class='d-flex align-item-center justify-content-center'>
+                <div class="spinner-border spinner-border-sm text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class='ml-2'>
+                  <!-- Текст загрузки -->
+                </span>
+              </div>
+            </div>
+            <div *ngIf="!loading">
+              ВОЙТИ
+            </div>
+          </button>
+
+          <button type="button" class="btn btn-link"
+            tooltip="Для восстановления пароля свяжитесь с системным администраторов" style="float: right;">
+            Забыли пароль?
+          </button>
+        </div>
+
+        <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+          <div class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </nb-layout-column>
+</nb-layout>
+
+
+<!-- <button className='btn btn-primary btn--sm mr-1' onClick={onLoginClick}>
+  {buttonsLoading.login ?
+      <div className='d-flex align-item-center justify-content-center'><Spinner animation="border" variant="light" size="sm" /><span className='ml-2'>Loading</span></div>
+      :
+      <div>Войти</div>
+  }
+</button> -->
+
+
+<!--
+  {
+  error && <Alert variant='danger'>{error}</Alert>
+} -->

@@ -1,0 +1,41 @@
+@import "src/styles/request-form.scss";
+@import "src/styles/history-rows.scss";
+
+.scan-documents-container {
+  h3,
+  h5,
+  li {
+    font-weight: 600;
+    color: #706d6b;
+  }
+
+  .choise-document-button {
+    width: 220px;
+    height: 40px;
+    background-image: linear-gradient(to right, #fd373dd1, #e31e24);
+    color: white;
+    font-weight: 700;
+  }
+
+  ul {
+    list-style-position: outside;
+    list-style-type: decimal;
+  }
+}
+.filter-container {
+  .filter-item {
+    width: 250px;
+  }
+}
+
+.red-button {
+  width: 100px;
+  height: 40px;
+  background-image: linear-gradient(to right, #fd373dd1, #e31e24);
+  color: white;
+  font-weight: 700;
+}
+
+caption {
+  caption-side: top;
+}

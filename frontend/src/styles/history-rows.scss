@@ -1,0 +1,14 @@
+.highlight_request_none {
+}
+
+.highlight_request_new {
+  background-image: linear-gradient(to bottom, rgba(102, 159, 99, 0.623), rgba(28, 107, 31, 0.514));
+}
+
+.highlight_request_not_confirmed {
+  background-image: linear-gradient(to bottom, rgb(161, 161, 161), rgb(170, 170, 170));
+}
+
+.highlight_request_overdue {
+  background-image: linear-gradient(to bottom, rgba(255, 105, 109, 0.82), #e31e2585);
+}

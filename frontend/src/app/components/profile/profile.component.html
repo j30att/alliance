@@ -1,0 +1,108 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 h-100 py-2 profile-container">
+  <h4 class="mb-4 title"> Профиль пользователя </h4>
+
+  <div class="d-flex align-items-start justify-content-evenly flex-wrap w-100">
+
+    <div class="d-flex flex-column align-items-center justify-content-start p-3 profile_avatar_container">
+      <img src={{user.avatar}} />
+      <div class="d-flex align-items-start justify-content-evenly">
+        <button class="load_image_button btn m-2" (click)="file.click()">
+          <div *ngIf="uploading;">
+            <div class='d-flex align-item-center justify-content-center'>
+              <div class="me-2">
+                <div class="spinner-border spinner-border-sm text-light"> </div>
+              </div>
+              <span> Загрузка </span>
+            </div>
+          </div>
+          <div *ngIf="!uploading;">
+            Изменить
+          </div>
+        </button>
+
+        <button class="remove_image_button btn m-2" (click)="onRemoveImage()">
+          <div *ngIf="resetting;">
+            <div class='d-flex align-item-center justify-content-center'>
+              <div class="me-2">
+                <div class="spinner-border spinner-border-sm text-light"> </div>
+              </div>
+              <span> Загрузка </span>
+            </div>
+          </div>
+          <div *ngIf="!resetting;">
+            Удалить
+          </div>
+        </button>
+
+        <input style="display: none;" type="file" (change)="fileChange($event)" placeholder="Upload file" #file
+          accept=".png,.jpg,.jpeg,.gif">
+
+      </div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center justify-content-evenly flex-wrap profile_items_container">
+      <div class="m-1 profile_item">
+        <label for="lastNameInput" class="form-label"> Фамилия: </label>
+        <input type="text" nbInput fullWidth placeholder="Фамилия" [(ngModel)]="user.lastName" id="lastNameInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="firstNameInput" class="form-label"> Имя: </label>
+        <input type="text" nbInput fullWidth placeholder="Имя" [(ngModel)]="user.firstName" id="firstNameInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="patronymicInput" class="form-label"> Отчество: </label>
+        <input type="text" nbInput fullWidth placeholder="Отчество" [(ngModel)]="user.patronymic"
+          id="patronymicInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="organizationInput" class="form-label"> Организация: </label>
+        <input type="text" nbInput fullWidth placeholder="Организация" [(ngModel)]="user.organization"
+          id="organizationInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="positionInput" class="form-label"> Должность: </label>
+        <input type="text" nbInput fullWidth placeholder="Должность" [(ngModel)]="user.position" id="positionInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="phoneInput" class="form-label"> Телефон: </label>
+        <input type="text" nbInput fullWidth placeholder="Телефон" [(ngModel)]="user.phone" id="phoneInput" />
+      </div>
+
+      <div class="m-1 profile_item">
+        <label for="emailInput" class="form-label"> Электронная почта: </label>
+        <input type="text" nbInput fullWidth placeholder="Электронная почта" [(ngModel)]="user.email" id="emailInput" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="m-3">
+    <button class="save_button btn" style="color: white; font-weight: 700;" (click)="onSaveChanges()">
+      <div *ngIf="loading">
+        <div class='d-flex align-item-center justify-content-center'>
+          <div class="spinner-border spinner-border-sm text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span className='ml-2'>
+            <!-- Текст загрузки -->
+          </span>
+        </div>
+      </div>
+      <div *ngIf="!loading">
+        Сохранить изменения
+      </div>
+    </button>
+  </div>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

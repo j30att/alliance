@@ -1,0 +1,253 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Карта водителя </h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Персональные данные
+  </div>
+
+  <form #personalDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Фамилия: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Фамилия" name="lastName"
+        [ngModel]="personalData.lastName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Имя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Имя" name="firstName"
+        [ngModel]="personalData.firstName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Отчество: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Отчество:" name="patronymic"
+        [ngModel]="personalData.patronymic" ngModel required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Место жительства: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Место жительства" name="placeOfResidence"
+        [ngModel]="personalData.placeOfResidence" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Почтовый адрес водителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Почтовый адрес водителя"
+        name="driverMailingAddress" [ngModel]="personalData.driverMailingAddress" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата рождения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="dateOfBirthPicker"
+        placeholder="Дата рождения" name="dateOfBirth" [ngModel]="personalData.dateOfBirth" required />
+      <nb-datepicker #dateOfBirthPicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Номер карты водиделя RUD: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер карты водиделя RUD"
+        name="driverCardNumberRUD" [ngModel]="personalData.driverCardNumberRUD" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Контактный номер телефона: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Контактный номер телефона" name="phone"
+        [ngModel]="personalData.phone" ngModel required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес электронной почты: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Адрес электронной почты" name="email"
+        [ngModel]="personalData.email" ngModel required />
+    </div>
+
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Данные паспорта
+  </div>
+
+  <form #passportForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="d-flex align-items-start justify-content-center">
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Серия: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Серия" name="series"
+          [ngModel]="passport.series" required />
+      </div>
+
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Номер: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+          [ngModel]="passport.number" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="passportDateOfIssuePicker"
+        placeholder="Дата выдачи" name="dateOfIssue" [ngModel]="passport.dateOfIssue" required />
+      <nb-datepicker #passportDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Кем выдан: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Кем выдан" name="issuer"
+        [ngModel]="passport.issuer" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Код подразделения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Код подразделения" name="departmentCode"
+        [ngModel]="passport.departmentCode" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Персональные документы
+  </div>
+
+  <form #personalDocumentsForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> ИНН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ИНН" name="inn"
+        [ngModel]="personalDocuments.inn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> СНИЛС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="СНИЛС" name="snils"
+        [ngModel]="personalDocuments.snils" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Данные водительсого удостоверения
+  </div>
+
+  <form #driverLicenseForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Страна выдачи: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Страна выдачи" name="issuerCountry"
+        [ngModel]="driverLicense.issuerCountry" required />
+    </div>
+
+    <div class="d-flex align-items-start justify-content-center">
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Серия: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Серия" name="series"
+          [ngModel]="driverLicense.series" required />
+      </div>
+
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Номер: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+          [ngModel]="driverLicense.number" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи удостоверения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="driverLicenseDateOfIssuePicker"
+        placeholder="Дата выдачи" name="dateOfIssue" [ngModel]="driverLicense.dateOfIssue" required />
+      <nb-datepicker #driverLicenseDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата окончания срока
+        действия удостоверения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="driverLicenseDateOfExpirePicker"
+        placeholder="Дата окончания" name="dateOfExpire" [ngModel]="driverLicense.dateOfExpire" required />
+      <nb-datepicker #driverLicenseDateOfExpirePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Кем выдано: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Кем выдано" name="issuer"
+        [ngModel]="driverLicense.issuer" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Документы на сканирование
+  </div>
+
+  <div class="d-flex flex-column align-items-start justify-content-center w-100 px-4 mb-3 scan-documents-container">
+
+    <form class="w-100 px-1 dynamic-form" *ngFor="let uploadedFile of uploadedFiles">
+      <div class="form-group mb-1">
+        <label class="form-label"> Наименование файла: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Название файла" name="fileName"
+          [(ngModel)]="uploadedFile.fileName" required />
+      </div>
+      <div class="open-file">
+        <button class="btn btn-link " (click)="openFileTab(uploadedFile.url)">Открыть </button>
+      </div>
+
+      <div *ngIf="!request" class="d-flex align-items-start justify-content-end w-100 p-2">
+        <button type="button" class="red-button btn" (click)="onRemoveUploadFileClick(uploadedFile)"
+          style="width: auto;">
+          Удалить файл </button>
+      </div>
+      <div class="w-100 my-3 caption" style="height: 5px;"> </div>
+    </form>
+
+    <button *ngIf="!request" class="choise-document-button btn mb-3 align-self-center" (click)="file.click()"
+      style="width: 200px;">
+      <div *ngIf="uploading;">
+        <div class='d-flex align-item-center justify-content-center'>
+          <div class="me-2">
+            <div class="spinner-border spinner-border-sm text-light"> </div>
+          </div>
+          <span> Загрузка </span>
+        </div>
+      </div>
+      <div *ngIf="!uploading;">
+        Выбрать документ
+      </div>
+    </button>
+    <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
+    <input style="display: none;" type="file" (change)="fileChange($event)" placeholder="Upload file" #file>
+
+    <h3>Для карт водителя ЕСТР необходимы документы: </h3>
+    <ul>
+      <li>СНИЛС </li>
+      <li> ИНН</li>
+      <li> Паспорт - "главная страница и место жительства"</li>
+      <li> Водительское удостоверение</li>
+      <li> Фото водителя на белом фоне (как на паспорт, можно в цвете)</li>
+      <li> Если уже была карта - скан старой карты.</li>
+    </ul>
+
+    <h5> ВАЖНО что бы все сканы документов были в ХОРОШЕМ качестве! </h5>
+
+  </div>
+
+  <form #submitForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Согласие: </label>
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="agreement" ngModel required>
+        <label class="form-check-label">
+          Согласие на обработку персональных данных
+        </label>
+      </div>
+    </div>
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading" [sendButtonDisabled]="personalDataForm.invalid || passportForm.invalid || personalDocumentsForm.invalid ||
+      driverLicenseForm.invalid || submitForm.invalid"
+      (onSendButtonClick)="onCreateButton(personalDataForm, passportForm, personalDocumentsForm, driverLicenseForm)"
+      (onBackButtonClick)="onBackButton()" (onConfirmButtonClick)="onConfirmButton()"
+      (onRejectButtonClick)="onRejectButton()" (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

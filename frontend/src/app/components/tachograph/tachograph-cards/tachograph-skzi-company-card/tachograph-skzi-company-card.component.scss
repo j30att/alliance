@@ -1,0 +1,37 @@
+@import "src/styles/request-form.scss";
+
+.scan-documents-container {
+
+  h3,
+  h5,
+  li {
+    font-weight: 600;
+    color: #706D6B;
+  }
+
+  .choise-document-button {
+    width: 220px;
+    height: 40px;
+    background-image: linear-gradient(to right, #fd373dd1, #E31E24);
+    color: white;
+    font-weight: 700;
+  }
+
+
+  ul {
+    list-style-position: outside;
+    list-style-type: decimal;
+  }
+}
+
+.open-file {
+  .btn {
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      box-shadow: none;
+    }
+  }
+}
+

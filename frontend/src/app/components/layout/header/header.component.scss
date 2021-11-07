@@ -1,0 +1,124 @@
+$breakpoint-extra-small: 408px;
+
+.header-container {
+  background: url(/assets/img/nav_background.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 60px;
+  min-width: 290px;
+
+  .logo-container {
+    .title {
+      @media (max-width: $breakpoint-extra-small) {}
+    }
+  }
+
+  .notifications-container {
+    margin-left: auto;
+    border-right: 3px solid white;
+    border-left: 3px solid white;
+
+    div {
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
+  .account-container {
+    .btn-group {
+      .btn {
+        .account-info {
+          overflow: hidden;
+
+          .info {
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            // width: 200px;
+            // text-overflow: ellipsis;
+
+            @media (max-width: $breakpoint-extra-small) {
+              display: none;
+            }
+          }
+
+          .avatar {
+            img {
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+
+              @media (max-width: $breakpoint-extra-small) {
+                width: 35px;
+                height: 35px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-group>ul {
+  background-color: #BE352F;
+}
+
+.account-menu-item {
+  a {
+    color: white;
+
+    &:hover {
+      background-image: none;
+      background-color: #c45752;
+    }
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.btn {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    box-shadow: none;
+  }
+}
+
+.breadcrumb-container {
+  width: 95%;
+
+  .active {
+    font-weight: 700 !important;
+  }
+
+  a {
+    font-weight: 700 !important;
+  }
+
+  // background-color: #f2f2f2;
+}
+
+.shadow-filter {
+  filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px 1px 0 white) drop-shadow(1px -1px 0 white) drop-shadow(-1px -1px 0 white);
+}
+
+// .shadowfilter {
+//     --stroke-pos: 1px;
+//     --stroke-neg: -1px;
+//     --stroke-color: rgb(255, 255, 255);
+//     filter: drop-shadow(var(--stroke-pos) 0 0 var(--stroke-color))
+//       drop-shadow(var(--stroke-neg) 0 var(--stroke-color))
+//       drop-shadow(0 var(--stroke-pos) 0 var(--stroke-color))
+//       drop-shadow(0 var(--stroke-neg) 0 var(--stroke-color))
+//       drop-shadow(var(--stroke-pos) var(--stroke-pos) 0 var(--stroke-color))
+//       drop-shadow(var(--stroke-pos) var(--stroke-neg) 0 var(--stroke-color))
+//       drop-shadow(var(--stroke-neg) var(--stroke-pos) 0 var(--stroke-color))
+//       drop-shadow(var(--stroke-neg) var(--stroke-neg) 0 var(--stroke-color));
+// }

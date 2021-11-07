@@ -1,0 +1,66 @@
+<div class="container-fluid d-flex align-items-center justify-content-start header-container px-0">
+  <a routerLink="">
+    <div class="d-flex align-items-center justify-content-center h-100 logo-container p-0 mx-3" href="#">
+      <img class="logo shadow-filter" src="assets/img/simple_logo.png" style="width: 30px;" alt="Профиль">
+      <img class="title shadow-filter ms-1" src="assets/img/simple_logo_title.png" style="width: 100px;" alt="Профиль">
+    </div>
+  </a>
+
+  <div class="d-flex align-items-center justify-content-center h-100 px-2 pe-3 notifications-container">
+    <a routerLink="/notifications">
+      <div class="position-relative p-0">
+        <img class="icon" src="assets/img/notifications.svg" alt="Уведомления">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{unreadNotificationCount}}
+          <span class="visually-hidden">Уведомлений</span>
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <div class="d-flex align-items-center h-100 account-container">
+    <div class="btn-group">
+      <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="d-flex align-items-center justify-content-center h-100 account-info">
+          <div class="avatar m-0">
+            <img src={{user.avatar}} alt="Аватар">
+          </div>
+          <div class="ms-2 info">
+            {{user.formattedName}}
+          </div>
+        </div>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <div class="d-flex align-items-center justify-content-start h-100 account-menu-item">
+            <img class="ms-3" src="assets/img/statements.svg" />
+            <a class="dropdown-item" routerLink="/profile" style="text-decoration: none;">Редактировать профиль</a>
+          </div>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <div class="d-flex align-items-center justify-content-start h-100 account-menu-item">
+            <img class="ms-3" src="assets/img/logout.svg" s />
+            <a class="dropdown-item" style="text-decoration: none; cursor: pointer;" (click)='onLogoutClick()'>Выход</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="container-fluid d-flex align-items-center justify-content-start breadcrumb-container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs" [ngClass]="{'active': !breadcrumb.enable}" >
+        <a *ngIf="breadcrumb.enable; else normal" [routerLink]="breadcrumb.url"> {{ breadcrumb.label }}</a>
+        <ng-template #normal>
+          {{ breadcrumb.label }}
+        </ng-template>
+      </li>
+    </ol>
+  </nav>
+</div>

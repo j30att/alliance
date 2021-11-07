@@ -1,0 +1,84 @@
+<div class="form-group d-flex align-items-center justify-content-center w-100">
+  <div [ngSwitch]="buttonsGroupType">
+    <div *ngSwitchCase="ButtonsGroupType.GROUP_NONE">
+    </div>
+    <div *ngSwitchCase="ButtonsGroupType.GROUP_SEND">
+      <div class="form-group d-flex align-items-center justify-content-center w-100">
+        <button [disabled]="sendButtonDisabled" class="red-button btn m-3" style="width: 130px;"
+          (click)="sendButtonClick()">
+          <div *ngIf="loading.send">
+            <div class='d-flex align-item-center justify-content-center'>
+              <div class="spinner-border spinner-border-sm text-light" role="status">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!loading.send">
+            Отправить
+          </div>
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchCase="ButtonsGroupType.GROUP_BACK">
+      <div class="form-group d-flex align-items-center justify-content-center w-100">
+        <button class="red-button btn m-3" (click)="backButtonClick()">
+          Назад
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchCase="ButtonsGroupType.GROUP_CONFIRM">
+      <div class="form-group d-flex align-items-center justify-content-center my-3 w-100">
+        <button class="red-button btn" (click)="confirmButtonClick()" style="width: 100px;">
+          <div *ngIf="loading.confirm">
+            <div class='d-flex align-item-center justify-content-center'>
+              <div class="spinner-border spinner-border-sm text-light" role="status">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!loading.confirm">
+            Принять
+          </div>
+        </button>
+        <button class="red-button btn ms-3" (click)="rejectButtonClick()" style="width: 120px;">
+          <div *ngIf="loading.reject">
+            <div class='d-flex align-item-center justify-content-center'>
+              <div class="spinner-border spinner-border-sm text-light" role="status">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!loading.reject">
+            Отклонить
+          </div>
+        </button>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      default
+    </div>
+  </div>
+
+  <button
+    *ngIf="!(requestStatus == RequestStatus.STATUS_NONE|| requestStatus == RequestStatus.STATUS_FINESHED || requestStatus == RequestStatus.STATUS_REJECTED || requestStatus == RequestStatus.STATUS_NOT_CONFIRMED)"
+    class="red-button btn" style="width: 180px;" (click)="closeRequestButtonClick()">
+    <div *ngIf="loading.closing">
+      <div class='d-flex align-item-center justify-content-center'>
+        <div class="spinner-border spinner-border-sm text-light" role="status">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!loading.closing">
+      Закрыть заявку
+    </div>
+  </button>
+
+  <button
+    *ngIf="(requestStatus == RequestStatus.STATUS_FINESHED || requestStatus == RequestStatus.STATUS_REJECTED)"
+    class="red-button btn" style="width: 220px;" (click)="showCloseRequestCommentButtonClick()">
+      Причина закрытия
+  </button>
+
+</div>
+<!--
+<div class="debug">
+  <p>requestCloseComment: {{requestCloseComment}}</p>
+  <p>requestStatus: {{requestStatus}}</p>
+</div> -->

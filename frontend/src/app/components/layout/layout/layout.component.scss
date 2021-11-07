@@ -1,0 +1,23 @@
+@import "src/styles/vars.scss";
+
+.main_container {
+    background: url("/assets/img/map_background.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top;
+}
+
+.header-container {
+    width: $page_width;
+    max-width: $page_max_width;
+}
+
+.content-container {
+    width: $page_width;
+    max-width: $page_max_width;
+}
+
+.footer-container {
+    width: $page_width;
+    max-width: $page_max_width;
+}

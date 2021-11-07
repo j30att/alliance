@@ -1,0 +1,30 @@
+@import "src/styles/request-form.scss";
+
+.red-button {
+  width: auto;
+  height: 40px;
+  background-image: linear-gradient(to right, #fd373dd1, #e31e24);
+  color: white;
+  font-weight: 700;
+}
+
+label {
+  font-weight: 700;
+  color: #2b2a29;
+}
+
+.dialog-container {
+  width: 700px;
+
+  @media (max-width: 800px) {
+    width: 400px;
+  }
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
+  @media (max-width: 350px) {
+    width: 300px;
+  }
+}

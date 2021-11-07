@@ -1,0 +1,326 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Карта предприятия </h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Персональные данные
+  </div>
+
+  <form #personalDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Наименование организации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Наименование организации"
+        name="organization" [ngModel]="personalData.organization" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Должность: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Должность" name="position"
+        [ngModel]="personalData.position" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Фамилия заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Фамилия заявителя" name="lastName"
+        [ngModel]="personalData.lastName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Имя заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Имя заявителя" name="firstName"
+        [ngModel]="personalData.firstName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Отчество заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Отчество заявителя:" name="patronymic"
+        [ngModel]="personalData.patronymic" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Карты в количестве: </label>
+      <div class="d-flex align-items-start justify-content-start">
+        <input [readonly]="request" class="w-25 me-4" type="number" nbInput fullWidth placeholder="количество числом"
+          name="cardsCountNumber" [ngModel]="personalData.cardsCountNumber" required />
+        <input [readonly]="request" class="w-50" type="text" nbInput fullWidth placeholder="количество прописью"
+          name="cardsCountString" [ngModel]="personalData.cardsCountString" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Номер ранее выданной карты предприятия RUP: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth
+        placeholder="Номер ранее выданной карты предприятия RUP:" name="previouslyCardNumber"
+        [ngModel]="personalData.previouslyCardNumber" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Владелец ТС является: </label>
+      <div class="form-check">
+        <input [readonly]="request" class="form-check-input" type="radio" name="carOwnerType" value="Entity"
+          [ngModel]="personalData.carOwnerType" required>
+        <label class="form-check-label">
+          Юридическое лицо
+        </label>
+      </div>
+      <div class="form-check">
+        <input [readonly]="request" class="form-check-input" type="radio" name="carOwnerType" value="Individual"
+          [ngModel]="personalData.carOwnerType" required>
+        <label class="form-check-label">
+          Физическое лицо
+        </label>
+      </div>
+      <div class="form-check">
+        <input [readonly]="request" class="form-check-input" type="radio" name="carOwnerType"
+          value="individualEntrepreneur" [ngModel]="personalData.carOwnerType" required>
+        <label class="form-check-label">
+          Индивидуальный предприниматель
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес электронной почты: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Адрес электронной почты" name="email"
+        [ngModel]="personalData.email" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Контактный номер телефона: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Контактный номер телефона" name="phone"
+        [ngModel]="personalData.phone" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Гражданство владельца ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="RU" name="nationality"
+        [ngModel]="personalData.nationality" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Полное наименование владельца ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Полное наименование владельца ТС"
+        name="carOwnerFullName" [ngModel]="personalData.carOwnerFullName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Сокращенное наименование владельца ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Сокращенное наименование владельца ТС"
+        name="carOwnerAbbreviatedName" [ngModel]="personalData.carOwnerAbbreviatedName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ФИО владельца ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ФИО владельца ТС" name="carOwnerLFP"
+        [ngModel]="personalData.carOwnerLFP" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес места нахождения владельца ТС (в пределах места нахождения): </label>
+      <input [readonly]="request" type="text" nbInput fullWidth
+        placeholder="Адрес места нахождения владельца ТС (в пределах места нахождения)" name="carOwnerLocation"
+        [ngModel]="personalData.carOwnerLocation" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес места жительства (места пребывания) владельца ТС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth
+        placeholder="Адрес места жительства (места пребывания) владельца ТС" name="carOwnerAddress"
+        [ngModel]="personalData.carOwnerAddress" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Данные паспорта
+  </div>
+
+  <form #passportForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="d-flex align-items-start justify-content-center">
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Серия: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Серия" name="series"
+          [ngModel]="passport.series" required />
+      </div>
+
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Номер: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+          [ngModel]="passport.number" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="passportDateOfIssuePicker"
+        placeholder="Дата выдачи" name="dateOfIssue" [ngModel]="passport.dateOfIssue" required />
+      <nb-datepicker #passportDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Кем выдан: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Кем выдан" name="issuer"
+        [ngModel]="passport.issuer" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Код подразделения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Код подразделения" name="departmentCode"
+        [ngModel]="passport.departmentCode" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Регистрационные данные владельца ТС
+  </div>
+
+  <form #carOwnerRegisterDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Номер и дата выдачи доверенности или иного документа, подтверждающего право заявителя
+        действовать от имени юр. лица (для заявителей, действующих по доверенности):
+        : </label>
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Номер" name="documentNumber"
+        [ngModel]="carOwnerRegisterData.documentNumber" required />
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="documentDateOfIssuePicker"
+        placeholder="Дата выдачи" name="documentDateOfIssue" [ngModel]="carOwnerRegisterData.documentDateOfIssue"
+        required />
+      <nb-datepicker #documentDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> СНИЛС: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="СНИЛС" name="snils"
+        [ngModel]="carOwnerRegisterData.snils" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ИНН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ИНН" name="inn"
+        [ngModel]="carOwnerRegisterData.inn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ОГРН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ОГРН" name="ogrn"
+        [ngModel]="carOwnerRegisterData.ogrn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Должность, фамилия, имя и отчество (при наличии) руководителя юр. лица или лица,
+        назначенного ответственным за эксплуатацию тахографов: </label>
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Должность" name="position"
+        [ngModel]="carOwnerRegisterData.position" required />
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Фамилия" name="lastName"
+        [ngModel]="carOwnerRegisterData.lastName" required />
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Имя" name="firstName"
+        [ngModel]="carOwnerRegisterData.firstName" required />
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Отчество:" name="patronymic"
+        [ngModel]="carOwnerRegisterData.patronymic" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Наименование, номер и дата документа о назначении лица ответственным за эксплуатацию
+        тахографов: </label>
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Наименование"
+        name="responsibleDocumentName" [ngModel]="carOwnerRegisterData.responsibleDocumentName" required />
+      <input [readonly]="request" class="mb-1" type="text" nbInput fullWidth placeholder="Номер"
+        name="responsibleDocumentNumber" [ngModel]="carOwnerRegisterData.responsibleDocumentNumber" required />
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="responsibleDocumentDateOfIssuePicker"
+        placeholder="Дата выдачи" name="responsibleDocumentDateOfIssue"
+        [ngModel]="carOwnerRegisterData.responsibleDocumentDateOfIssue" required />
+      <nb-datepicker #responsibleDocumentDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Документы на сканирование
+  </div>
+
+  <div class="d-flex flex-column align-items-start justify-content-center p-2 mb-3 scan-documents-container">
+
+    <form class="w-100 px-5 dynamic-form" *ngFor="let uploadedFile of uploadedFiles">
+      <div class="form-group mb-1">
+        <label class="form-label"> Наименование файла: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Название файла" name="fileName"
+          [(ngModel)]="uploadedFile.fileName" required />
+      </div>
+      <div class="open-file">
+        <button class="btn btn-link " (click)="openFileTab(uploadedFile.url)">Открыть </button>
+      </div>
+
+      <div *ngIf="!request" class="d-flex align-items-start justify-content-end w-100 p-2">
+        <button type="button" class="red-button btn" (click)="onRemoveUploadFileClick(uploadedFile)"
+          style="width: auto;">
+          Удалить файл </button>
+      </div>
+      <div class="w-100 my-3 caption" style="height: 5px;"> </div>
+    </form>
+
+    <button *ngIf="!request" class="choise-document-button btn mb-3 align-self-center" (click)="file.click()"
+      style="width: 200px;">
+      <div *ngIf="uploading;">
+        <div class='d-flex align-item-center justify-content-center'>
+          <div class="me-2">
+            <div class="spinner-border spinner-border-sm text-light"> </div>
+          </div>
+          <span> Загрузка </span>
+        </div>
+      </div>
+      <div *ngIf="!uploading;">
+        Выбрать документ
+      </div>
+    </button>
+    <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
+    <input style="display: none;" type="file" (change)="fileChange($event)" placeholder="Upload file" #file>
+
+    <h3>Cписок документов для оформления карт для тахографов СКЗИ: </h3>
+    <ul>
+      <li> Заявление; </li>
+      <li> Копия свидетельства о регистрации юридического лица (индивидуального предпринимателя) (ИНН и ОГРН); </li>
+      <li> Копия паспорта руководителя предприятия или ответственного лица, назначенного приказом по предприятию, должна
+        быть заверена организацией </li>
+      <li> Копия приказа о назначении ответственного лица (обязательно с печатью); </li>
+      <li> Ранее выданная карты (при наличии); </li>
+      <li> Доверенность (простая письменная форма 6) юридического лица пункту выдачи карт; </li>
+      <li> Доверенность (простая письменная форма 8) юридического лица изготовителю карт; </li>
+      <li> Заявление о присоединении к регламенту удостоверяющего центра АО «АТЛАС-КАРТ» (Форма 10); </li>
+      <li> Заявление на регистрацию пользователя удостоверяющего центра АО «АТЛАС-КАРТ» и создание сертификата ключа
+        проверки электронной подписи для юридического лица (Форма 11); </li>
+      <li> Расписка в получении карты тахографа и прилагаемых к ней документов </li>
+      <li> СОГЛАСИЕ на обработку персональных данных </li>
+    </ul>
+
+    <h5> Необходимо сделать копии либо с оригинала указанных ниже документов, либо с первой копии, причем снятые копии
+      должны быть заверены подписью и печатью предприятия. </h5>
+
+  </div>
+
+  <form #submitForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Согласие: </label>
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="agreement" ngModel required>
+        <label class="form-check-label">
+          Согласие на обработку персональных данных
+        </label>
+      </div>
+    </div>
+
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading" [sendButtonDisabled]="personalDataForm.invalid || passportForm.invalid || carOwnerRegisterDataForm.invalid ||
+      submitForm.invalid"
+      (onSendButtonClick)="onCreateButton(personalDataForm, passportForm, carOwnerRegisterDataForm)"
+      (onBackButtonClick)="onBackButton()" (onConfirmButtonClick)="onConfirmButton()"
+      (onRejectButtonClick)="onRejectButton()" (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

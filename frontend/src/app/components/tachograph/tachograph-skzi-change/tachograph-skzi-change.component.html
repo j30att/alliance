@@ -1,0 +1,59 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Замена СКЗИ </h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Организация
+  </div>
+
+  <form #bodyForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Название организации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Название организации" name="organization"
+        [ngModel]="requestBody.organization" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ОГРН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ОГРН" name="ogrn"
+        [ngModel]="requestBody.ogrn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> ИНН: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ИНН" name="inn"
+        [ngModel]="requestBody.inn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> VIN: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="VIN" name="vin"
+        [ngModel]="requestBody.vin" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Гос. номер: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Гос. номер:" name="carNumber"
+        [ngModel]="requestBody.carNumber" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Номер свидетельства о регистрации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер свидетельства о регистрации"
+        name="registerNumber" [ngModel]="requestBody.registerNumber" required />
+    </div>
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading" [sendButtonDisabled]="bodyForm.invalid" (onSendButtonClick)="onCreateButton(bodyForm)"
+      (onBackButtonClick)="onBackButton()" (onConfirmButtonClick)="onConfirmButton()"
+      (onRejectButtonClick)="onRejectButton()" (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

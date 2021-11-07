@@ -1,0 +1,75 @@
+version: '3.7'
+
+services:
+  nest:
+    container_name: ${PROJECT_TAG}_nest
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/api
+      target: alliance_nest_development
+    volumes:
+      - ./backend/api:/nestApp
+      - /nestApp/node_modules
+    ports:
+      - ${NEST_PORT}:${NEST_PORT}
+    command: yarn start:dev
+    env_file:
+      - .env
+    networks:
+      - alliance_network
+    depends_on:
+      - mysql
+
+  angular:
+    container_name: ${PROJECT_TAG}_angular
+    working_dir: /angularApp
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+      target: alliance_angular_development
+    volumes:
+      - ./frontend:/angularApp
+      - /angularApp/node_modules
+    ports:
+      - ${ANGULAR_PORT}:${ANGULAR_PORT}
+      - 49153:49153
+    command: yarn start
+    networks:
+      - alliance_network
+    depends_on:
+      - mysql
+
+  nginx:
+    container_name: ${PROJECT_TAG}_nginx
+    build:
+      context: ./backend/docker/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - ${NGINX_PORT}:80
+    volumes:
+      - ./frontend:/var/www/sites/${PROJECT_TAG}
+      - ./backend/docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./backend/api/upload:/var/www/sites/${PROJECT_TAG}/upload
+    links:
+      - nest
+      - angular
+    networks:
+      - alliance_network
+
+  mysql:
+    container_name: ${PROJECT_TAG}_mysql
+    image: mysql:8.0
+    env_file: ./backend/docker/.env.mariadb
+    volumes:
+      - alliance-db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - alliance_network
+
+networks:
+  alliance_network:
+    driver: bridge
+volumes:
+  alliance-db-data:

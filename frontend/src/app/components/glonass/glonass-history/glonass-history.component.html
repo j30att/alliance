@@ -1,0 +1,167 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 h-100 py-2 component-container">
+  <h4 class="mb-3 title"> История заявок </h4>
+
+  <form [formGroup]="filterForm" class="w-100 px-5" (ngSubmit)="getRequets()" novalidate>
+
+    <div class="d-flex align-items-start justify-content-evenly flex-wrap w-100 filter-container">
+
+      <div class="form-group m-2 filter-item">
+        <label class="form-label"> Номер заявки: </label>
+        <input type="number" nbInput fullWidth placeholder="Номер заявки" name="number" formControlName="number" />
+      </div>
+
+      <div class="form-group m-2 filter-item">
+        <label class="form-label"> Дата создания (диапазон): </label>
+        <input type="text" nbInput fullWidth [nbDatepicker]="createdAtRangePicker"
+          placeholder="например: 06.07.2021 - 23.07.2021" formControlName="date" name="dateOfIssue" />
+        <nb-rangepicker #createdAtRangePicker format="dd.MM.yyyy"></nb-rangepicker>
+      </div>
+
+      <div class="form-group m-2 filter-item">
+        <label class="form-label"> Статус заявок: </label>
+        <nb-select fullWidth placeholder="Выберите статус заявки" name='requestStatus' [(selected)]="requestStatus"
+          formControlName="status">
+          <nb-option value="">Все заявки</nb-option>
+          <nb-option value="new"> Новые </nb-option>
+          <nb-option value="active"> В работе </nb-option>
+          <nb-option value="notConfirmed"> Требуют подтверждение </nb-option>
+          <nb-option value="rejected"> Отклоненные </nb-option>
+        </nb-select>
+      </div>
+    </div>
+
+    <div class="form-group d-flex align-items-center justify-content-center w-100">
+      <button class="red-button btn m-3">
+        <div *ngIf="loading">
+          <div class='d-flex align-item-center justify-content-center'>
+            <div class="me-2">
+              <div class="spinner-border spinner-border-sm text-light"> </div>
+            </div>
+            <span> Поиск </span>
+          </div>
+        </div>
+        <div *ngIf="!loading">
+          Найти
+        </div>
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="w-100 px-3">
+    <!-- <table class="table table-responsive table-striped table-hover"> -->
+    <table class="table table-responsive table-hover">
+      <caption>
+        <div *ngIf="loading; else normal_state">
+          <div class='d-flex align-item-center justify-content-center'>
+            <div class="me-2">
+              <div class="spinner-border spinner-border-sm"> </div>
+            </div>
+            <span> Поиск </span>
+          </div>
+        </div>
+        <ng-template #normal_state>
+          <button class="btn btn-link" (click)="getRequets()"> Обновить список </button>
+        </ng-template>
+      </caption>
+
+      <thead>
+        <tr>
+          <th class="d-none d-sm-table-cell"> Дата создания</th>
+          <th class="id-col"> Номер </th>
+          <th> Статус </th>
+          <th class="type-col"> Тип </th>
+          <th class="d-none d-sm-table-cell"> Контрагент </th>
+          <th class="d-none d-md-table-cell"> Марка ТС </th>
+          <th class="d-none d-md-table-cell"> Техник </th>
+          <th class="d-none d-lg-table-cell"> Описание </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requests" style="user-select: none; cursor: pointer; font-weight: 600;" [ngClass]="{
+              'highlight_request_none' : request.getHighlight() == RequestHighlight.NONE,
+              'highlight_request_new'  : request.getHighlight() == RequestHighlight.NEW,
+              'highlight_request_not_confirmed '  : request.getHighlight() == RequestHighlight.NOT_CONFIRMED,
+              'highlight_request_overdue'  : request.getHighlight() == RequestHighlight.OVERDUE }"
+          (click)="onRowClick(request)">
+          <td class="d-none d-sm-table-cell">{{ request.formattedCreatedAtDate() | dfnsFormat: 'dd.MM.yyyy HH:mm'}}
+          </td>
+          <td class="id-col">{{ request.id }}</td>
+          <td class="type-col">{{ request.formattedStatus() }}</td>
+          <td>{{ request.formattedType() }}</td>
+          <td class="d-none d-sm-table-cell">{{ request.contractor }}</td>
+          <td class="d-none d-md-table-cell">{{ request.vehicle }}</td>
+          <td class="d-none d-md-table-cell"> {{ request.worker }}</td>
+          <td class="d-none d-lg-table-cell">{{ request.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && requests.length == 0" class="mb-2"
+      style="text-align: center; vertical-align: middle; font-weight: 600;">
+      Список заявок пуст
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!--
+<div className="table-responsive">
+  <table className="table table-striped"> </table>
+  <table className='table table-bordered table-hover'>
+    <caption>
+      <div *ngIf="loading; else normal">
+        <div class='d-flex align-item-center justify-content-center'>
+          <div class="spinner-border spinner-border-sm text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span className='ml-2'>
+            Загрузка
+          </span>
+        </div>
+      </div>
+      <ng-template #normal>
+        <div className="d-flex w-100 align-items-center justify-content-center">
+          <a href="#" onClick={getFieldsGroups}>Обновить список</a>
+        </div>
+      </ng-template>
+    </caption>
+
+    <thead>
+      <tr>
+        <th style="text-align: center; vertical-align: middle;">
+          Название:
+        </th>
+        <th style="text-align: center; vertical-align: middle;">
+          Доступно:
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td scope="row" style="text-align: center; vertical-align: middle;">
+          Эрондондон
+        </td>
+
+        <td scope="row" style="text-align: center; vertical-align: middle;">
+          Эрондондон
+        </td>
+    </tbody>
+  </table>
+</div> -->
+
+<!-- <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи: </label>
+      <input type="text" nbInput fullWidth [nbDatepicker]="passportDateOfIssuePicker" placeholder="Дата выдачи"
+        name="dateOfIssue" ngModel required />
+      <nb-datepicker #passportDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div> -->

@@ -1,0 +1,76 @@
+.main_container {
+  background: url("/assets/img/index_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .logo_container {
+    height: 33%;
+    align-self: center;
+    // margin-left: -700px;
+    min-width: 315px;
+
+    $breakpoint-tablet: 768px;
+
+    @media (max-width: $breakpoint-tablet) {
+      //   align-self: center;
+      margin-left: 0;
+    }
+
+    img {
+      max-height: 130px;
+      max-width: 210px;
+      object-fit: contain;
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 20px;
+      color: black;
+    }
+  }
+
+  .login_form_container {
+    width: 400px;
+    height: auto;
+    color: #2B2A29;
+    font-weight: bold;
+    background-color: rgba(242, 242, 242, 0.9);
+    border-radius: 5px;
+    border-width: thin;
+    min-width: 300px;
+
+    $breakpoint-extra-small: 408px;
+
+    @media (max-width: $breakpoint-extra-small) {
+      width: 80%;
+    }
+
+    .login_form_title {
+      height: 60px;
+      font-size: 20px;
+    }
+
+    .login_button {
+      background-image: linear-gradient(to right, #fd373dd1, #E31E24);
+    }
+  }
+}
+
+.btn {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  min-width: 90px;
+  min-height: 38px;
+}
+
+
+// #container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }

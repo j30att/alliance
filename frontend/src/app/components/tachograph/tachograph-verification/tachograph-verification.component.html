@@ -1,0 +1,59 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Метрологическая поверка</h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Организация
+  </div>
+
+  <form #bodyForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Название организации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Название организации" name="organization"
+        [ngModel]="requestBody.organization" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Модель автомобиля: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Модель автомобиля" name="carModel"
+        [ngModel]="requestBody.carModel" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Марка автомобиля: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Марка автомобиля" name="carBrand"
+        [ngModel]="requestBody.carBrand" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Гос. номер: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Гос. номер:" name="carNumber"
+        [ngModel]="requestBody.carNumber" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Модель тахографа: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Модель тахографа:" name="tachographModel"
+        [ngModel]="requestBody.tachographModel" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Контактный номер телефона: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Контактный номер телефона" name="phone"
+        [ngModel]="requestBody.phone" required />
+    </div>
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading" [sendButtonDisabled]="bodyForm.invalid" (onSendButtonClick)="onCreateButton(bodyForm)"
+      (onBackButtonClick)="onBackButton()" (onConfirmButtonClick)="onConfirmButton()"
+      (onRejectButtonClick)="onRejectButton()" (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

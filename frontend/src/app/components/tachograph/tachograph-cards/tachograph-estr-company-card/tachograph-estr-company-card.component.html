@@ -1,0 +1,266 @@
+<div class="d-flex flex-column align-items-center justify-content-start w-100 py-2 component-container"
+  [nbSpinner]="loading.content" nbSpinnerStatus="danger">
+  <h4 class="mb-3 title"> Карта предприятия </h4>
+
+  <div class="d-flex align-items-start justify-content-center p-2 mb-3 caption">
+    Персональные данные
+  </div>
+
+  <form #personalDataForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Наименование организации: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Наименование организации"
+        name="organization" [ngModel]="personalData.organization" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Должность: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Должность" name="position"
+        [ngModel]="personalData.position" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Фамилия заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Фамилия заявителя" name="lastName"
+        [ngModel]="personalData.lastName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Имя заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Имя заявителя" name="firstName"
+        [ngModel]="personalData.firstName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Отчество заявителя: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Отчество заявителя:" name="patronymic"
+        [ngModel]="personalData.patronymic" ngModel required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Карты предприятия в количестве: </label>
+      <div class="d-flex align-items-start justify-content-start">
+        <input [readonly]="request" class="w-25 me-4" type="number" nbInput fullWidth placeholder="количество числом"
+          name="companyCardsCountNumber" [ngModel]="personalData.companyCardsCountNumber" required />
+        <input [readonly]="request" class="w-50" type="text" nbInput fullWidth placeholder="количество прописью"
+          name="companyCardsCountString" [ngModel]="personalData.companyCardsCountString" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Оформить на: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ФИО, должность" name="issueOn"
+        [ngModel]="personalData.issueOn" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Полное наименование юр. лица на русском языке: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Полное наименование юр. лица:"
+        name="entityFullName" [ngModel]="personalData.entityFullName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Сокращенное наименование юр. лица на русском языке: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Сокращенное наименование юр. лица:"
+        name="entityAbbreviatedName" [ngModel]="personalData.entityAbbreviatedName" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес места нахождения исполнительного органа: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth
+        placeholder="Адрес места нахождения исполнительного органа" name="executiveAgencyLocation"
+        [ngModel]="personalData.executiveAgencyLocation" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Почтовый адрес предприятия: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Почтовый адрес предприятия"
+        name="companyPostalAddress" [ngModel]="personalData.companyPostalAddress" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Адрес электронной почты: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Адрес электронной почты" name="email"
+        [ngModel]="personalData.email" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Контактный номер телефона: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Контактный номер телефона" name="phone"
+        [ngModel]="personalData.phone" required />
+    </div>
+  </form>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Информация о ранее выданных действующих картах
+  </div>
+
+  <form class="w-100 px-5 dynamic-form" *ngFor="let previouslyIssuedCard of previouslyIssuedCards">
+    <div class="form-group mb-2">
+      <label class="form-label"> Номер: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+        [(ngModel)]="previouslyIssuedCard.number" required />
+    </div>
+    <div class="form-group mb-2">
+      <label class="form-label"> Срок действия: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Срок действия" name="validity"
+        [(ngModel)]="previouslyIssuedCard.validity" required />
+    </div>
+    <div class="form-group mb-2">
+      <label class="form-label"> ФИО лица, на которое была выдана карта:: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="ФИО лица, на которое была выдана карта:"
+        name="owner" [(ngModel)]="previouslyIssuedCard.owner" required />
+    </div>
+
+    <div *ngIf="!request" class="d-flex align-items-start justify-content-end w-100 p-2">
+      <button type="button" class="red-button btn" (click)="onRemoveCardClick(previouslyIssuedCard)"
+        style="width: auto;">
+        Удалить карту </button>
+    </div>
+    <div class="w-100 my-3 caption" style="height: 5px;"> </div>
+  </form>
+
+  <button *ngIf="!request" class="red-button btn align-self-center" (click)="onAddCardClick()" style="width: auto;">
+    Добавить карту
+  </button>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Информация по каждому лицу, получающему карты
+  </div>
+
+  <form class="w-100 px-5 dynamic-form" *ngFor="let receivingCardPerson of receivingCardPersons">
+    <div class="d-flex align-items-start justify-content-center">
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Серия: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Серия" name="series"
+          [(ngModel)]="receivingCardPerson.series" required />
+      </div>
+
+      <div class="form-group w-50 mb-2">
+        <label class="form-label"> Номер: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Номер" name="number"
+          [(ngModel)]="receivingCardPerson.number" required />
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Дата выдачи: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth [nbDatepicker]="passportDateOfIssuePicker"
+        placeholder="Дата выдачи" name="dateOfIssue" [(ngModel)]="receivingCardPerson.dateOfIssue" required />
+      <nb-datepicker #passportDateOfIssuePicker format="dd.MM.yyyy"></nb-datepicker>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Кем выдан: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Кем выдан" name="issuer"
+        [(ngModel)]="receivingCardPerson.issuer" required />
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label"> Код подразделения: </label>
+      <input [readonly]="request" type="text" nbInput fullWidth placeholder="Код подразделения" name="departmentCode"
+        [(ngModel)]="receivingCardPerson.departmentCode" required />
+    </div>
+
+    <div *ngIf="!request" class="d-flex align-items-start justify-content-end w-100 p-2">
+      <button type="button" class="red-button btn" (click)="onRemovePersonClick(receivingCardPerson)"
+        style="width: auto;">
+        Удалить данные получателя </button>
+    </div>
+    <div class="w-100 my-3 caption" style="height: 5px;"> </div>
+  </form>
+
+  <button *ngIf="!request" class="red-button btn align-self-center" (click)="onAddPersonClick()" style="width: auto;">
+    Добавить данные получателя
+  </button>
+
+  <div class="d-flex align-items-start justify-content-center p-2 my-3 caption">
+    Документы на сканирование
+  </div>
+
+  <div class="d-flex flex-column align-items-start justify-content-center w-100 px-4 mb-3 scan-documents-container">
+
+    <form class="w-100 px-1 dynamic-form" *ngFor="let uploadedFile of uploadedFiles">
+      <div class="form-group mb-1">
+        <label class="form-label"> Наименование файла: </label>
+        <input [readonly]="request" type="text" nbInput fullWidth placeholder="Название файла" name="fileName"
+          [(ngModel)]="uploadedFile.fileName" required />
+      </div>
+      <div class="open-file">
+        <button class="btn btn-link " (click)="openFileTab(uploadedFile.url)">Открыть </button>
+      </div>
+
+      <div *ngIf="!request" class="d-flex align-items-start justify-content-end w-100 p-2">
+        <button type="button" class="red-button btn" (click)="onRemoveUploadFileClick(uploadedFile)"
+          style="width: auto;">
+          Удалить файл </button>
+      </div>
+      <div class="w-100 my-3 caption" style="height: 5px;"> </div>
+    </form>
+
+    <button *ngIf="!request" class="choise-document-button btn mb-3 align-self-center" (click)="file.click()"
+      style="width: 200px;">
+      <div *ngIf="uploading;">
+        <div class='d-flex align-item-center justify-content-center'>
+          <div class="me-2">
+            <div class="spinner-border spinner-border-sm text-light"> </div>
+          </div>
+          <span> Загрузка </span>
+        </div>
+      </div>
+      <div *ngIf="!uploading;">
+        Выбрать документ
+      </div>
+    </button>
+    <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
+    <input style="display: none;" type="file" (change)="fileChange($event)" placeholder="Upload file" #file>
+
+    <h3>Cписок документов для оформления карт для тахографов ЕСТР: </h3>
+    <ul>
+      <li> Заявление; </li>
+      <li> Копия свидетельства о регистрации юридического лица (индивидуального предпринимателя) (ИНН и ОГРН); </li>
+      <li> Копия паспорта руководителя предприятия или ответственного лица, назначенного приказом по предприятию, должна
+        быть заверена организацией </li>
+      <li> Копия приказа о назначении ответственного лица (обязательно с печатью); </li>
+      <li> Ранее выданная карты (при наличии); </li>
+      <li> Доверенность (простая письменная форма 6) юридического лица пункту выдачи карт; </li>
+      <li> Доверенность (простая письменная форма 8) юридического лица изготовителю карт; </li>
+      <li> Заявление о присоединении к регламенту удостоверяющего центра АО «АТЛАС-КАРТ» (Форма 10); </li>
+      <li> Заявление на регистрацию пользователя удостоверяющего центра АО «АТЛАС-КАРТ» и создание сертификата ключа
+        проверки электронной подписи для юридического лица (Форма 11); </li>
+      <li> Расписка в получении карты тахографа и прилагаемых к ней документов </li>
+      <li> СОГЛАСИЕ на обработку персональных данных </li>
+    </ul>
+
+    <h5> Необходимо сделать копии либо с оригинала указанных ниже документов, либо с первой копии, причем снятые копии
+      должны быть заверены подписью и печатью предприятия. </h5>
+
+  </div>
+
+  <form #submitForm="ngForm" class="w-100 px-5" novalidate>
+    <div class="form-group mb-2">
+      <label class="form-label"> Согласие: </label>
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="agreement" ngModel required>
+        <label class="form-check-label">
+          Согласие на обработку персональных данных
+        </label>
+      </div>
+    </div>
+
+    <app-request-buttons-group [requestStatus]="requestStatus" [requestCloseComment]="requestCloseComment"
+      [loading]="loading" [sendButtonDisabled]="personalDataForm.invalid || submitForm.invalid"
+      (onSendButtonClick)="onCreateButton(personalDataForm)" (onBackButtonClick)="onBackButton()"
+      (onConfirmButtonClick)="onConfirmButton()" (onRejectButtonClick)="onRejectButton()"
+      (onCloseRequestButtonClick)="onCloseRequestButton($event)">
+    </app-request-buttons-group>
+
+  </form>
+
+  <div *ngIf="error" class='d-flex align-item-center justify-content-center '>
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+
+</div>

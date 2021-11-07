@@ -1,0 +1,28 @@
+server {
+  listen ${NGINX_PORT};
+  server_name alliance.ru;
+  location / {
+        proxy_pass ${ANGULAR_DEV_HOST};
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+
+        proxy_cache_bypass $http_upgrade;
+
+        client_max_body_size 0;
+  }
+
+  location /api/ {
+        proxy_pass ${NEST_DEV_HOST};
+        proxy_set_header Host $host;
+        client_max_body_size 0;
+  }
+
+  location /upload/ {
+      alias /var/www/sites/alliance/upload/;
+      location ~*  \.(jpg|jpeg|png|gif|ico|css|js|ttf)$ {
+            expires 365d;
+      }
+  }
+}

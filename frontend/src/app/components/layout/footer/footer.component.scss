@@ -1,0 +1,57 @@
+footer {
+  $breakpoint-extra-small: 558px;
+  background-color: #EDEDED;
+  height: 140px;
+
+  @media (max-width: 420px) {
+    height: 100px;
+  }
+
+  .logo-container {
+
+    @media (max-width: $breakpoint-extra-small) {
+      display: none !important;
+    }
+
+    img {
+      width: 130px;
+      height: 100px;
+    }
+  }
+
+  .contacts-container {
+    @media (max-width: $breakpoint-extra-small) {
+      width: 100% !important;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .instagram-phone {
+      @media (max-width: 420px) {
+        display: none !important;
+      }
+    }
+
+    .address-email {
+      @media (max-width: 420px) {
+        align-items: flex-start !important;
+        flex-direction: row !important;
+      }
+    }
+
+    .contact {
+      span {
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 15px;
+      }
+
+    }
+
+  }
+}
